@@ -2,8 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-////////////////////////////////////////////////////////////////
-class Link {                                   // (could be other items)
+class Link {
     public Link next;                   // next link in list
     private final int iData;                  // data item
 
@@ -13,19 +12,19 @@ class Link {                                   // (could be other items)
         iData = it;
     }
 
-    // -------------------------------------------------------------
+
     public int getKey() {
         return iData;
     }
 
-    // -------------------------------------------------------------
+
     public void displayLink()           // display this link
     {
         System.out.print(iData + " ");
     }
 }  // end class Link
 
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////
 class SortedList {
     private Link first;               // ref to first list item
 
@@ -42,21 +41,20 @@ class SortedList {
         Link previous = null;          // start at first
         Link current = first;
         // until end of list,
-        while (current != null && key > current.getKey()) {                           // or current > key,
+        while (current != null && key > current.getKey()) {
             previous = current;
-            current = current.next;     // go to next item
+            current = current.next;
         }
-        if (previous == null)             // if beginning of list,
-            first = theLink;            //    first --> new link
-        else                           // not at beginning,
-            previous.next = theLink;    //    prev --> new link
-        theLink.next = current;        // new link --> current
-    }  // end insert()
+        if (previous == null)
+            first = theLink;
+        else
+            previous.next = theLink;
+        theLink.next = current;
+    }
 
-    // -------------------------------------------------------------
-    public void delete(int key)       // delete link
-    {                              // (assumes non-empty list)
-        Link previous = null;          // start at first
+    public void delete(int key)
+    {
+        Link previous = null;
         Link current = first;
         // until end of list,
         while (current != null && key != current.getKey()) {                           // or key == current,
@@ -96,7 +94,7 @@ class SortedList {
     }
 }  // end class SortedList
 
-////////////////////////////////////////////////////////////////
+ ////////////////////////////
 class HashTable {
     private final SortedList[] hashArray;   // array of lists
     private final int arraySize;
@@ -119,19 +117,17 @@ class HashTable {
         }
     }
 
-    // -------------------------------------------------------------
-    public int hashFunc(int key)      // hash function
+    public int hashFunc(int key)
     {
         return key % arraySize;
     }
 
-    // -------------------------------------------------------------
-    public void insert(Link theLink)  // insert a link
+    public void insert(Link theLink)
     {
         int key = theLink.getKey();
-        int hashVal = hashFunc(key);   // hash the key
-        hashArray[hashVal].insert(theLink); // insert at hashVal
-    }  // end insert()
+        int hashVal = hashFunc(key);
+        hashArray[hashVal].insert(theLink);
+    }
 
     // -------------------------------------------------------------
     public void delete(int key)       // delete a link
@@ -147,10 +143,9 @@ class HashTable {
         Link theLink = hashArray[hashVal].find(key);  // get link
         return theLink;                // return link
     }
-// -------------------------------------------------------------
 }  // end class HashTable
 
-////////////////////////////////////////////////////////////////
+
 class HashChainApp {
     public static void main(String[] args) throws IOException {
         int aKey;
@@ -206,7 +201,6 @@ class HashChainApp {
         }  // end while
     }  // end main()
 
-    //--------------------------------------------------------------
     public static String getString() throws IOException {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
@@ -214,18 +208,14 @@ class HashChainApp {
         return s;
     }
 
-    //-------------------------------------------------------------
     public static char getChar() throws IOException {
         String s = getString();
         return s.charAt(0);
     }
 
-    //-------------------------------------------------------------
     public static int getInt() throws IOException {
         String s = getString();
         return Integer.parseInt(s);
     }
-//--------------------------------------------------------------
-}  // end class HashChainApp
-////////////////////////////////////////////////////////////////
+}
 
